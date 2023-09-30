@@ -1,12 +1,16 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-
-export default function HomePageLayout({ children }) {
+import { getServerSession } from "next-auth";
+import SessionProvider from "@/components/SessionProvider";
+export default async function HomePageLayout({ children }) {
+  const session = await getServerSession();
   return (
     <>
-      <Navbar />
-      {children}
-      <Footer />
+      <SessionProvider session={session}>
+        <Navbar />
+        {children}
+        <Footer />
+      </SessionProvider>
     </>
   );
 }
