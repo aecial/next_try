@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+* {
+  box-sizing: border-box;
+}
 .content-height {
   height: calc(100vh - 112px);
 }
