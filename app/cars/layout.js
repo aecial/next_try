@@ -8,8 +8,10 @@ export default async function CarsLayout({ children }) {
   } else {
     return (
       <>
-        <h1>CARSSS!</h1>
-        <div>{children}</div>
+        <div className="content-height">
+          <h1>CARSSS!</h1>
+          <div>{children}</div>
+        </div>
       </>
     );
   }
