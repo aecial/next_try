@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 function AuthButton() {
   const { data: session } = useSession();
 
@@ -15,6 +16,12 @@ function AuthButton() {
             className="rounded-2xl"
           />
           {session?.user?.name}
+        </div>
+
+        <div className="flex gap-10">
+          <Link href="/">Home</Link>
+          <Link href="/new">New</Link>
+          <Link href="/cars">Cars</Link>
         </div>
 
         <button onClick={() => signOut()}>Sign Out</button>
