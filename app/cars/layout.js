@@ -4,7 +4,7 @@ export default async function CarsLayout({ children }) {
   const session = await getServerSession();
 
   if (!session || !session.user) {
-    redirect("localhost:3000/api/auth/signin");
+    redirect("/");
   } else {
     return (
       <>
