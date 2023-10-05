@@ -1,6 +1,8 @@
-"use client";
-
-export default function Home() {
+// "use client";
+import { PrismaClient } from "@prisma/client";
+export default async function Home() {
+  const prisma = new PrismaClient();
+  const notes = await prisma.notes.findFirst();
   return (
     <>
       <div className="content-height p-4">
@@ -8,6 +10,16 @@ export default function Home() {
           <h1 className="text-2xl text-center text-slate-200">Main Content</h1>
           <div>
             <h2 className="text-xl mb-4">Wazzup</h2>
+            <table className=" mx-auto border border-white  w-44 text-center">
+              <th>Id</th>
+              <th>Text</th>
+              <tbody className="">
+                <tr>
+                  <td>{notes.id}</td>
+                  <td>{notes.text}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
