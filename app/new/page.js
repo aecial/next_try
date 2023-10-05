@@ -1,13 +1,23 @@
 "use client";
 import React, { useState } from "react";
-import { PrismaClient } from "@prisma/client";
 
 const page = () => {
-  const prisma = new PrismaClient();
-  async function addNote(e, note) {
-    await prisma.notes.create({ data: { text: note } });
-  }
   const [myText, setMyText] = useState("");
+  async function addNote(note) {
+    console.log(note);
+    try {
+      fetch("/api/addNote", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ note }),
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="content-height flex items-center justify-center">
       <div className="flex flex-col">

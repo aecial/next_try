@@ -12,17 +12,19 @@ export default async function Home() {
           <h1 className="text-2xl text-center text-slate-200">Main Content</h1>
           <div>
             <h2 className="text-xl mb-4">Wazzup</h2>
-            <table className=" mx-auto border border-white  w-auto text-center">
-              <th>Id</th>
-              <th>Text</th>
-              <th>CreatedAt</th>
-              <tbody className="">
+            <table className=" mx-auto border border-white w-96 text-center">
+              <th className="border border-white">Id</th>
+              <th className="border border-white">Text</th>
+              <th className="border border-white">CreatedAt</th>
+              <tbody className="border border-white">
                 {notes.map((note) => {
                   return (
-                    <tr>
-                      <td>{note.id}</td>
-                      <td>{note.text}</td>
-                      <td>{note.createdAt.toString()}</td>
+                    <tr className="border border-white">
+                      <td className="border border-white">{note.id}</td>
+                      <td className="border border-white">{note.text}</td>
+                      <td className="border border-white">
+                        {note.createdAt.toString()}
+                      </td>
                     </tr>
                   );
                 })}
