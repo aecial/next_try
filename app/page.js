@@ -2,7 +2,7 @@
 import { PrismaClient } from "@prisma/client";
 export default async function Home() {
   const prisma = new PrismaClient();
-  const notes = await prisma.notes.findFirst();
+  const notes = await prisma.notes.findMany();
   return (
     <>
       <div className="content-height p-4">
@@ -14,10 +14,14 @@ export default async function Home() {
               <th>Id</th>
               <th>Text</th>
               <tbody className="">
-                <tr>
-                  <td>{notes.id}</td>
-                  <td>{notes.text}</td>
-                </tr>
+                {notes.map((note) => {
+                  return (
+                    <tr>
+                      <td>{note.id}</td>
+                      <td>{note.text}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
