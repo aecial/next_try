@@ -3,6 +3,8 @@ import React, { useState } from "react";
 
 const page = () => {
   const [myText, setMyText] = useState("");
+
+  // Add note to DB
   async function addNote(note) {
     console.log(note);
     try {

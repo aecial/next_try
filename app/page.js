@@ -1,4 +1,4 @@
-// "use client";
+//"use client";
 import { PrismaClient } from "@prisma/client";
 
 export default async function Home() {
@@ -13,13 +13,15 @@ export default async function Home() {
           <div>
             <h2 className="text-xl mb-4">Wazzup</h2>
             <table className=" mx-auto border border-white w-96 text-center">
-              <th className="border border-white">Id</th>
-              <th className="border border-white">Text</th>
-              <th className="border border-white">CreatedAt</th>
               <tbody className="border border-white">
+                <tr>
+                  <th className="border border-white">Id</th>
+                  <th className="border border-white">Text</th>
+                  <th className="border border-white">CreatedAt</th>
+                </tr>
                 {notes.map((note) => {
                   return (
-                    <tr className="border border-white">
+                    <tr className="border border-white" key={note.id}>
                       <td className="border border-white">{note.id}</td>
                       <td className="border border-white">{note.text}</td>
                       <td className="border border-white">
