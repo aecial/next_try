@@ -13,15 +13,31 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   const session = await getServerSession();
-  return (
-    <html lang="en">
-      <body className={`${inter.className} bg-slate-800 text-slate-300`}>
-        <SessionProvider session={session}>
-          <Navbar />
-          {children}
-          <Footer />
-        </SessionProvider>
-      </body>
-    </html>
-  );
+  if (session) {
+    return (
+      <html lang="en">
+        <body className={`${inter.className} bg-slate-800 text-slate-300`}>
+          <SessionProvider session={session}>
+            <Navbar />
+            {children}
+            <Footer />
+          </SessionProvider>
+        </body>
+      </html>
+    );
+  } else {
+    return (
+      <html lang="en">
+        <body className={`${inter.className} bg-slate-800 text-slate-300`}>
+          <SessionProvider session={session}>
+            <Navbar />
+            <div className="content-height ">
+              <h1 className="text-2xl">LANDING</h1>
+            </div>
+            <Footer />
+          </SessionProvider>
+        </body>
+      </html>
+    );
+  }
 }
