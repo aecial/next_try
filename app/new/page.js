@@ -18,6 +18,7 @@ const page = () => {
     } catch (error) {
       console.error(error);
     }
+    setMyText("");
   }
 
   return (
@@ -26,6 +27,7 @@ const page = () => {
         <input
           type="text"
           className="text-2xl mb-4 text-slate-800 px-0.5"
+          value={myText}
           onChange={(e) => setMyText(e.target.value)}
         />
         <button
