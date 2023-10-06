@@ -7,4 +7,5 @@
 }
 .content-height {
   height: calc(100vh - 112px);
+  overflow-y: scroll;
 }

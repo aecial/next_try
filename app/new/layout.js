@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { Toaster } from "sonner";
 export default async function NewLayout({ children }) {
   const session = await getServerSession();
 
@@ -9,7 +10,10 @@ export default async function NewLayout({ children }) {
     return (
       <>
         <div className="content-height">
-          <div>{children}</div>
+          <div>
+            {children}
+            <Toaster position="top-right" />
+          </div>
         </div>
       </>
     );

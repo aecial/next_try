@@ -1,4 +1,5 @@
 "use client";
+import { toast } from "sonner";
 import React, { useState } from "react";
 
 const page = () => {
@@ -15,8 +16,11 @@ const page = () => {
         },
         body: JSON.stringify({ note }),
       });
+      toast.success("Added a new note", {
+        style: { backgroundColor: "#065F46", color: "white" },
+      });
     } catch (error) {
-      console.error(error);
+      toast.error(error);
     }
     setMyText("");
   }
@@ -29,6 +33,7 @@ const page = () => {
           className="text-2xl mb-4 text-slate-800 px-0.5"
           value={myText}
           onChange={(e) => setMyText(e.target.value)}
+          required
         />
         <button
           onClick={() => addNote(myText)}
