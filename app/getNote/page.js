@@ -4,6 +4,7 @@ async function getNote() {
   const notes = await prisma.notes.findMany();
   return (
     <div className="content-height p-8">
+      <h1 className="text-3xl text-center mb-4">My Notes</h1>
       <table className=" mx-auto border border-white w-96 text-center">
         <tbody className="border border-white">
           <tr>
