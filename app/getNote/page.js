@@ -1,5 +1,6 @@
 import React from "react";
 import prisma from "@/lib/Prisma";
+import Link from "next/link";
 async function getNote() {
   const notes = await prisma.notes.findMany();
   return (
@@ -11,6 +12,7 @@ async function getNote() {
             <th className="border border-white">Id</th>
             <th className="border border-white">Text</th>
             <th className="border border-white">CreatedAt</th>
+            <th className="border border-white">Link</th>
           </tr>
           {notes.map((note) => {
             return (
@@ -19,6 +21,9 @@ async function getNote() {
                 <td className="border border-white">{note.text}</td>
                 <td className="border border-white">
                   {note.createdAt.toString()}
+                </td>
+                <td>
+                  <Link href={`/getNote/${note.id}`}>Go</Link>
                 </td>
               </tr>
             );

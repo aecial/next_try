@@ -1,5 +1,6 @@
 import React from "react";
 import prisma from "@/lib/Prisma";
+import NoteCard from "@/components/NoteCard";
 const page = async ({ params }) => {
   const id = Number(params.id);
   try {
@@ -8,11 +9,7 @@ const page = async ({ params }) => {
         id: id,
       },
     });
-    return (
-      <div className="content-height p-8">
-        {note.id} | {note.text} | {note.createdAt.toString()}
-      </div>
-    );
+    return <NoteCard id={note.id} text={note.text} date={note.createdAt} />;
   } catch {
     return (
       <div className="content-height p-8 flex justify-center items-center">
