@@ -13,12 +13,4 @@ export async function GET(request) {
   } else {
     return NextResponse.json({ data: "Note not Found" });
   }
-  // const ror = await prisma.notes.findUnique({
-  //   where: {
-  //     id: id,
-  //   },
-  // });
-  // const { id } = res;
-  // console.log({ res });
-  // const result = await prisma.notes.findFirst();
 }
