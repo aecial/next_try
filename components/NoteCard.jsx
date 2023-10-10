@@ -10,6 +10,7 @@ const NoteCard = ({ id, text, date }) => {
       },
       body: JSON.stringify({ num }),
     });
+    history.back();
   }
   return (
     <div className="content-height p-8 flex flex-col justify-center items-center gap-5">
