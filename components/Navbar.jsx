@@ -25,14 +25,18 @@ function AuthButton() {
           <Link href="/cars">Cars</Link>
         </div>
 
-        <button onClick={() => signOut()}>Sign Out</button>
+        <button onClick={() => signOut()} className="border border-white p-1">
+          Sign Out
+        </button>
       </>
     );
   }
   return (
     <>
       Not Signed In <br />
-      <button onClick={() => signIn()}>Sign In</button>
+      <button onClick={() => signIn()} className="border border-white p-1">
+        Sign In
+      </button>
     </>
   );
 }
