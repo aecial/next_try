@@ -6,8 +6,9 @@ import { stringify } from "postcss";
 
 const page = () => {
   const [noteId, setNoteId] = useState("");
-  const [validId, setValidId] = useState("");
-  const [validText, setValidText] = useState("");
+  const [validId, setValidId] = useState("id");
+  const [validText, setValidText] = useState("text");
+  const [validDate, setValidDate] = useState("date");
 
   // search note to DB
   async function searchNote(noteId) {
@@ -16,6 +17,7 @@ const page = () => {
     const info = await noteData.json();
     setValidId(info["data"]["id"]);
     setValidText(info["data"]["text"]);
+    setValidDate(info["data"]["createdAt"].toString());
     setNoteId("");
     // setValidId(data.data.id);
     // setValidText(data.data.text);
@@ -23,8 +25,8 @@ const page = () => {
   }
 
   return (
-    <div className="content-height flex  items-center justify-center">
-      <div className="flex flex-col">
+    <div className="content-height flex flex-col-reverse">
+      <div className="flex flex-col w-44 h-44 mx-auto">
         <input
           type="text"
           className="text-2xl mb-4 text-slate-800 px-0.5"
@@ -39,7 +41,7 @@ const page = () => {
           Search Note
         </button>
       </div>
-      <NoteCard id={validId} text={validText} date={""} />
+      <NoteCard id={validId} text={validText} date={validDate} />
     </div>
   );
 };

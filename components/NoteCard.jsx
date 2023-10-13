@@ -19,7 +19,7 @@ const NoteCard = ({ id, text, date }) => {
           ID: <span className="underline">{id}</span>
         </h3>
         <h1 className="text-2xl text-center">{text}</h1>
-        <h5 className="text-sm text-gray-400">{date.toString()}</h5>
+        <h5 className="text-sm text-gray-400 text-center">{date.toString()}</h5>
       </div>
       <div className="flex justify-between min-w-[20vw]">
         <button
