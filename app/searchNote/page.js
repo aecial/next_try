@@ -26,9 +26,6 @@ const page = () => {
       setValidId(info["data"]["id"]);
       setValidText(info["data"]["text"]);
       setValidDate(info["data"]["createdAt"].toString());
-      toast.success("You have searched a Note", {
-        style: { backgroundColor: "#065F46", color: "white" },
-      });
       setNoteId("");
       // setValidId(data.data.id);
       // setValidText(data.data.text);
