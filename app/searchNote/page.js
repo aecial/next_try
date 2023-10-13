@@ -15,13 +15,25 @@ const page = () => {
     console.log(noteId);
     const noteData = await fetch(`api/note/${noteId}`);
     const info = await noteData.json();
-    setValidId(info["data"]["id"]);
-    setValidText(info["data"]["text"]);
-    setValidDate(info["data"]["createdAt"].toString());
-    setNoteId("");
-    // setValidId(data.data.id);
-    // setValidText(data.data.text);
-    // setValidDate(data.data.createdAt);
+    if (info["data"] === "Note not Found") {
+      setValidId(noteId);
+      setValidText([info["data"]]);
+      setValidDate("");
+      toast.error("Note Does Not Exist!", {
+        style: { backgroundColor: "#d9534f", color: "white" },
+      });
+    } else {
+      setValidId(info["data"]["id"]);
+      setValidText(info["data"]["text"]);
+      setValidDate(info["data"]["createdAt"].toString());
+      toast.success("You have searched a Note", {
+        style: { backgroundColor: "#065F46", color: "white" },
+      });
+      setNoteId("");
+      // setValidId(data.data.id);
+      // setValidText(data.data.text);
+      // setValidDate(data.data.createdAt);
+    }
   }
 
   return (

@@ -21,6 +21,7 @@ function AuthButton() {
         <div className="flex gap-10">
           <Link href="/">Home</Link>
           <Link href="/new">New</Link>
+          <Link href="/searchNote">Search Note</Link>
           <Link href="/getNote">View Notes</Link>
           <Link href="/cars">Cars</Link>
         </div>
