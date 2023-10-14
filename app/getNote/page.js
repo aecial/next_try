@@ -1,8 +1,14 @@
 import React from "react";
 import prisma from "@/lib/Prisma";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
 async function getNote() {
-  const notes = await prisma.notes.findMany();
+  const session = await getServerSession();
+  const notes = await prisma.notes.findMany({
+    where: {
+      email: session.user.email,
+    },
+  });
   return (
     <div className="content-height p-8">
       <h1 className="text-3xl text-center mb-4">My Notes</h1>
@@ -19,6 +25,7 @@ async function getNote() {
               <tr className="border border-white" key={note.id}>
                 <td className="border border-white">{note.id}</td>
                 <td className="border border-white">{note.text}</td>
+                <td className="border border-white">{note.email}</td>
                 <td className="border border-white">
                   {note.createdAt.toString()}
                 </td>

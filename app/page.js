@@ -1,8 +1,13 @@
 //"use client";
 import prisma from "../lib/Prisma";
-
+import { getServerSession } from "next-auth";
 export default async function Home() {
-  const notes = await prisma.notes.findMany();
+  const session = await getServerSession();
+  const notes = await prisma.notes.findMany({
+    where: {
+      email: session.user.email,
+    },
+  });
 
   return (
     <>
@@ -16,6 +21,7 @@ export default async function Home() {
                 <tr>
                   <th className="border border-white">Id</th>
                   <th className="border border-white">Text</th>
+                  <th className="border border-white">Email</th>
                   <th className="border border-white">CreatedAt</th>
                 </tr>
                 {notes.map((note) => {
@@ -23,6 +29,7 @@ export default async function Home() {
                     <tr className="border border-white" key={note.id}>
                       <td className="border border-white">{note.id}</td>
                       <td className="border border-white">{note.text}</td>
+                      <td className="border border-white">{note.email}</td>
                       <td className="border border-white">
                         {note.createdAt.toString()}
                       </td>
