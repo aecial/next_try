@@ -1,7 +1,10 @@
 "use client";
 import { redirect } from "next/navigation";
+import { useState } from "react";
 
 const NoteCard = ({ id, text, date }) => {
+  const [show, setShow] = useState(false);
+  const [newTxt, setNewTxt] = useState(text);
   function del(num) {
     fetch("/api/deleteNote", {
       method: "POST",
@@ -9,6 +12,16 @@ const NoteCard = ({ id, text, date }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ num }),
+    });
+    history.back();
+  }
+  function upd(num, msg) {
+    fetch("/api/updateNote", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ num, msg }),
     });
     history.back();
   }
@@ -28,9 +41,42 @@ const NoteCard = ({ id, text, date }) => {
         >
           Delete
         </button>
-        <button className="border border-white p-2 w-32 bg-slate-100 hover:bg-slate-300 focus-within:bg-slate-300  text-slate-800">
+        <button
+          className="border border-white p-2 w-32 bg-slate-100 hover:bg-slate-300 focus-within:bg-slate-300  text-slate-800"
+          onClick={() => setShow(!show)}
+        >
           Update
         </button>
+      </div>
+      <div>
+        {show ? (
+          <div className="flex flex-col gap-5">
+            <input
+              type="text"
+              name="newText"
+              id="newText"
+              value={newTxt}
+              className="text-slate-800 px-1"
+              onChange={(e) => setNewTxt(e.target.value)}
+            />
+            <div className="flex gap-5">
+              <button
+                className="border border-white p-2 w-32 bg-slate-100 hover:bg-slate-300 focus-within:bg-slate-300  text-slate-800"
+                onClick={() => setShow(!show)}
+              >
+                Cancel
+              </button>
+              <button
+                className="border border-white p-2 w-32 bg-slate-100 hover:bg-slate-300 focus-within:bg-slate-300  text-slate-800"
+                onClick={() => upd(id, newTxt)}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
