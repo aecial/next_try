@@ -25,7 +25,7 @@ async function getNote() {
               <tr className="border border-white" key={note.id}>
                 <td className="border border-white">{note.id}</td>
                 <td className="border border-white">{note.text}</td>
-                <td className="border border-white">{note.email}</td>
+                {/* <td className="border border-white">{note.email}</td> */}
                 <td className="border border-white">
                   {note.createdAt.toString()}
                 </td>
