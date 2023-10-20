@@ -13,7 +13,7 @@ const page = async ({ params }) => {
   } catch {
     return (
       <div className="content-height p-8 flex justify-center items-center">
-        <h1 className="text-4xl">Note not found :/</h1>
+        <h1 className="text-4xl">Note not found</h1>
       </div>
     );
   }
